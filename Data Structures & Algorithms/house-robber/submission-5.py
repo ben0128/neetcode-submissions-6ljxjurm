@@ -1,0 +1,12 @@
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        memo = [-1]*len(nums)
+        def recur(i):
+            if i >= len(nums):
+                return 0
+            if memo[i] != -1:
+                return memo[i]
+            memo[i] = max(recur(i+1), nums[i]+recur(i+2))
+            return memo[i]
+
+        return recur(0)
